@@ -1,3 +1,4 @@
+import Redux from 'redux';
 // redux intro using an insurance company as example
 // Action Creators - Action - Dispatch - Reducers - State
 
@@ -56,3 +57,20 @@ const policies = (listOfPolicies = [], action) => {
   }
   return listOfPolicies;
 };
+
+const { createStore, combineReducers } = Redux;
+
+const ourDepartments = combineReducers({
+  accounting: accounting,
+  claimsHistory: claimsHistory,
+  policies: policies
+});
+
+const store = createStore(ourDepartments);
+
+store.dispatch(createPolicy('Alex', 20));
+
+store.dispatch(createClaim('Alex', 120));
+
+store.dispatch(deletePolicy('Alex'));
+
